@@ -26,6 +26,8 @@ namespace Lakatos.Collections.Persistent.Tests
             // Act
             var newList = list.Add(5);
 
+            
+
             // Log state after adding
             _output.WriteLine("List after adding element 5: " + PrintList(newList));
 

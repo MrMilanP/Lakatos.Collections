@@ -1,9 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Lakatos.Collections.Persistent;
-using Microsoft.FSharp.Collections;
-using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace Lakatos.Collections.Benchmark
 {
@@ -11,20 +10,17 @@ namespace Lakatos.Collections.Benchmark
     {
         private PersistentList<int> persistentList;
         private ImmutableList<int> immutableList;
-        private FSharpList<int> fsharpList;
 
         [GlobalSetup]
         public void Setup()
         {
             persistentList = PersistentList<int>.Empty;
             immutableList = ImmutableList<int>.Empty;
-            fsharpList = FSharpList<int>.Empty;
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 200; i++)
             {
                 persistentList = persistentList.Add(i);
                 immutableList = immutableList.Add(i);
-                fsharpList = FSharpList<int>.Cons(i, fsharpList);
             }
         }
 
@@ -32,7 +28,7 @@ namespace Lakatos.Collections.Benchmark
         public void AddToPersistentList()
         {
             var list = persistentList;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 200; i++)
             {
                 list = list.Add(i);
             }
@@ -42,20 +38,60 @@ namespace Lakatos.Collections.Benchmark
         public void AddToImmutableList()
         {
             var list = immutableList;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 200; i++)
             {
                 list = list.Add(i);
             }
         }
 
         [Benchmark]
-        public void AddToFSharpList()
+        public void RemoveFromPersistentList()
         {
-            var list = fsharpList;
-            for (int i = 0; i < 1000; i++)
+            var list = persistentList;
+            for (int i = 0; i < 200; i++)
             {
-                list = FSharpList<int>.Cons(i, list); 
+                if (!list.IsEmpty)
+                {
+                    list = list.Remove();
+                }
             }
+        }
+
+        [Benchmark]
+        public void RemoveFromImmutableList()
+        {
+            var list = immutableList;
+            for (int i = 0; i < 200; i++)
+            {
+                if (list.Count > 0)
+                {
+                    list = list.RemoveAt(0);
+                }
+            }
+        }
+
+        [Benchmark]
+        public void FindInPersistentList()
+        {
+            persistentList.Find(x => x == 100);
+        }
+
+        [Benchmark]
+        public void FindInImmutableList()
+        {
+            immutableList.FirstOrDefault(x => x == 100);
+        }
+
+        [Benchmark]
+        public void MapPersistentList()
+        {
+            var mappedList = persistentList.Map(x => x * 2);
+        }
+
+        [Benchmark]
+        public void ToListPersistent()
+        {
+            var list = persistentList.ToList();
         }
     }
 

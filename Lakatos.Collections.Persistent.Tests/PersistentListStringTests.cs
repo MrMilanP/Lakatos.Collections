@@ -285,6 +285,35 @@ namespace Lakatos.Collections.Persistent.Tests
             Assert.Equal("A", standardList[2]); // Treći element treba da bude "A"
         }
 
+        [Fact]
+        public void Previous_ShouldReturnCorrectPreviousVersion()
+        {
+            // Arrange
+            var initialList = PersistentList<int>.Empty.Add(1); // List: [1]
+            var secondList = initialList.Add(2); // List: [2, 1]
+            var thirdList = secondList.Add(3); // List: [3, 2, 1]
+
+            // Act
+            var previousOfThird = thirdList.Previous; // Should be [2, 1]
+            var previousOfSecond = previousOfThird?.Previous; // Should be [1], safe access with ?.
+
+            // Print
+            _output.WriteLine("Third List: " + PrintList(thirdList));
+            _output.WriteLine("Previous of Third: " + (previousOfThird != null ? PrintList(previousOfThird) : "null"));
+            _output.WriteLine("Previous of Second: " + (previousOfSecond != null ? PrintList(previousOfSecond) : "null"));
+
+            // Assert
+            Assert.NotNull(previousOfThird); // Ensure it's not null
+            Assert.NotNull(previousOfSecond); // Ensure it's not null
+            Assert.Equal(2, previousOfThird!.Head); // The head of the previous list should be 2
+            Assert.Equal(1, previousOfSecond!.Head); // The head of the previous list should be 1
+
+            // Assert the remaining elements in each list
+            Assert.Equal(1, previousOfThird.Tail.Head);
+            Assert.True(previousOfSecond.Tail.IsEmpty); // The tail of the initial list should be empty
+        }
+
+
 
         // Helper method to print the list
         private string PrintList<T>(PersistentList<T> list)
