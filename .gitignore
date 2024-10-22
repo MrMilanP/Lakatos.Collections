@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ForNuGet/LC (1).png
+/ForNuGet/LC.fw.png
