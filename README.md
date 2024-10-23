@@ -46,7 +46,7 @@ Install via NuGet Package Manager:
 ```bash
 Install-Package Lakatos.Collections
 ```
-
+### Example Usage
 
 ### PersistentList
 ```csharp
@@ -59,8 +59,6 @@ persistentList = persistentList.Add(2);
 // Accessing previous versions
 var previousList = persistentList.Previous; // Will be [1]
 ```
-
-### Example Usage
 
 ### EfficientList
 
