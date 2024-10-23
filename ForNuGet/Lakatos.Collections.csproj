@@ -9,11 +9,20 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <FileVersion>1.0.0.1</FileVersion>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
     <PackageProjectUrl>https://github.com/MrMilanP/Lakatos.Collections</PackageProjectUrl>
-    <PackageIcon>LC.fw.png</PackageIcon>
-    <Version>1.0.1</Version>
+    <PackageIcon>LC.png</PackageIcon>
+    <Version>1.1.0</Version>
+    <Title>Lakatos.Collections - Advanced Immutable and Efficient Data Structures</Title>
+    <SignAssembly>False</SignAssembly>
+    <Description>Lakatos.Collections is a C# library offering advanced immutable and efficient data structures such as PersistentList for version tracking and EfficientList for high-performance operations, including sorting and searching over large datasets.</Description>
+    <Copyright>Copyright © 2024 Milan Lakatos Petrovic. All rights reserved.</Copyright>
+    <RepositoryUrl>https://github.com/MrMilanP/Lakatos.Collections</RepositoryUrl>
+    <PackageTags>C#; Collections; Immutable; Persistent; Efficient; Data Structures; Performance; Thread-Safe; .NET</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Version 1.1.0 - Added EfficientList collection for high-performance operations including sorting and searching. Optimized for large datasets and multi-core systems.
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +38,10 @@
 
   <ItemGroup>
     <None Update="LC.fw.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="LC.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
