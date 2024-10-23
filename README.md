@@ -93,10 +93,9 @@ Console.WriteLine($"Element found at index: {index}");
 | Collection     | Average Insertion Time | Historical Tracking | Complexity for Search        | Immutable | Time for 100 Parallel Searches           |
 |----------------|------------------------|---------------------|------------------------------|-----------|------------------------------------------|
 | PersistentList | ~7 µs                  | Yes                 | Logarithmic                  | Yes       | N/A                                      |
-| EfficientList  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted),        | No        | 5.267 ms                                 |
-|                |                        |                     | Linear (unsorted)            |           |                                          |
+| EfficientList  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted)         | No        | 5.267 ms                                 |
 | FSharpList     | ~3 µs                  | No                  | Linear                       | Yes       | N/A                                      |
-| ImmutableList  | ~0.9 µs                | No                  | Logarithmic                  | Yes       | 18.379 ms                                |
+| ImmutableList  | ~0.9 µs                | No                  | Logarithmic (sorted)         | Yes       | 18.379 ms                                |
 
 
 **Note**: `EfficientList` and `ImmutableList` were tested with **10 million insertions**, sorting operations, and **100 parallel searches**, confirming their efficiency and speed when handling large datasets.
