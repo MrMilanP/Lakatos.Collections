@@ -11,16 +11,12 @@ A linked list where each modification (like adding a new element) results in a n
 ### 2. EfficientList
 An optimized list designed for high-performance operations, such as fast sorting and searching. Suitable for scenarios where efficiency and speed are critical, even with large datasets. 
 
-#### Features:
-- **High Performance**: Provides fast sorting algorithms like `QuickSort`, `MergeSort`, and `ParallelSort`.
-- **Parallel Operations**: Supports parallel search (`ParallelBinarySearch`) for improved speed on multi-core systems.
-- **Dynamic Growth**: Efficiently manages memory and grows dynamically without significant overhead.
-
 ### Features
-- **Immutability**: Collections do not allow in-place modifications, ensuring no side effects in your applications.
-- **Version History (PersistentList)**: Track changes and maintain historical versions of your data, useful for undo features and debugging.
-- **Efficient Snapshots (PersistentList)**: Stores only differences to manage memory efficiently.
-- **Fast Operations (EfficientList)**: Optimized sorting and searching algorithms, with support for parallel execution, suitable for large-scale data processing.
+- **Immutability**: Ensures no in-place modifications, avoiding side effects.
+- **Version History (PersistentList)**: Track changes and maintain historical versions, useful for undo features and debugging.
+- **Efficient Snapshots (PersistentList)**: Stores only differences, optimizing memory usage.
+- **High Performance (EfficientList)**: Optimized for fast operations with support for parallel execution.
+- **Scalability (EfficientList)**: Handles millions of elements efficiently, suitable for large-scale and real-time data processing.
 
 
 ### Specific to EfficientList:
