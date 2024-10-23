@@ -61,6 +61,10 @@ var previousList = persistentList.Previous; // Will be [1]
 ```
 
 ### EfficientList
+### Example Usage
+
+#### Using `string`
+
 ```csharp
 using Lakatos.Collections.Efficient;
 
@@ -74,6 +78,26 @@ efficientList.QuickSort();
 
 // Search for an element
 int index = efficientList.BinarySearch("10.0.0.1");
+Console.WriteLine($"Element found at index: {index}");
+```
+
+#### Using `CharArrayWrapper`
+
+```csharp
+using Lakatos.Collections.Efficient;
+
+var efficientList = new EfficientList<CharArrayWrapper>();
+
+efficientList.Add(new CharArrayWrapper(new char[] { '1', '9', '2', '.', '1', '6', '8', '.', '0', '.', '1' }));
+efficientList.Add(new CharArrayWrapper(new char[] { '1', '0', '.', '0', '.', '0', '.', '1' }));
+efficientList.Add(new CharArrayWrapper(new char[] { '1', '7', '2', '.', '1', '6', '.', '0', '.', '1' }));
+
+// Sort the list using QuickSort
+efficientList.QuickSort();
+
+// Search for an element
+var searchElement = new CharArrayWrapper(new char[] { '1', '0', '.', '0', '.', '0', '.', '1' });
+int index = efficientList.BinarySearch(searchElement);
 Console.WriteLine($"Element found at index: {index}");
 ```
 
