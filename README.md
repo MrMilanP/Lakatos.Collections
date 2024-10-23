@@ -15,23 +15,16 @@ An optimized list designed for high-performance operations, such as fast sorting
 - **Immutability**: Ensures no in-place modifications, avoiding side effects.
 - **Version History (PersistentList)**: Track changes and maintain historical versions, useful for undo features and debugging.
 - **Efficient Snapshots (PersistentList)**: Stores only differences, optimizing memory usage.
-- **High Performance (EfficientList)**: Optimized for fast operations with support for parallel execution.
-- **Scalability (EfficientList)**: Handles millions of elements efficiently, suitable for large-scale and real-time data processing.
+- **High Performance (EfficientList)**: Provides fast sorting algorithms like `QuickSort`, `MergeSort`, and `ParallelSort` with support for parallel execution.
+- **Scalability (EfficientList)**: Efficiently handles millions of elements, suitable for large-scale and real-time data processing.
 
-
-### Specific to EfficientList:
-- **Fast Operations**: Sorting and searching optimized for performance with support for parallel execution.
-- **Scalability**: Handles millions of elements efficiently, suitable for large-scale and real-time data processing.
 
 ### Practical Use-Cases
 - **PersistentList**:
-  - Undo/Redo Operations: Ideal for applications that need to revert actions.
-  - Time-Travel Debugging: Allows inspection of historical states.
-  - Multithreaded Applications: Ensures thread-safety without synchronization issues.
+  - Undo/Redo Operations, time-travel debugging, and multithreaded applications.
 - **EfficientList**:
-  - DNS Filtering: Efficient for checking and responding to queries in real-time.
-  - Data Analysis: Optimized for sorting and searching over large datasets.
-  - Real-Time Systems: Suitable for scalable and high-performance environments.
+  - DNS filtering, data analysis, and real-time systems.
+
 
 
 ## Getting Started
@@ -107,21 +100,15 @@ Console.WriteLine($"Element found at index: {index}");
 ## Pros & Cons
 
 ### Pros
-- **Immutability and Safety**: No accidental modifications of data, making the code easier to debug and maintain.
-- **Persistence (PersistentList)**: Track the evolution of data over time, enabling undo/redo functionality and version control-like behavior.
+- **Immutability and Safety**: Prevents accidental modifications, simplifying debugging and maintenance.
+- **Persistence (PersistentList)**: Enables undo/redo functionality and version control-like behavior.
 - **High Performance (EfficientList)**: Optimized for fast operations, suitable for real-time and large-scale systems.
+- **Concurrent Operations**: Thread-safe design due to immutability and efficient parallel processing.
 
 ### Cons
-- **Memory Usage**: Persistent collections can consume more memory as each change creates a new version of the data.
-- **Speed**: Persistent collections may be slower than non-persistent collections due to version handling, while `EfficientList` provides better performance for non-persistent operations.
+- **Memory Usage**: Persistent collections consume more memory as each change creates a new version.
+- **Speed**: May be slower than non-persistent collections due to version handling, but `EfficientList` improves performance for non-persistent operations.
 
-## Advanced Features
-
-### Time Travel Debugging (PersistentList)
-Provides the capability to step back in time and see previous states of the collection, useful for debugging complex application states.
-
-### Concurrent Operations
-Due to immutability (PersistentList) and efficient parallel operations (EfficientList), these collections are inherently thread-safe, making them useful for concurrent applications without synchronization issues.
 
 
 ## License
