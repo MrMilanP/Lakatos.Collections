@@ -1,10 +1,8 @@
 # Lakatos.Collections
 
-## Overview
-**Lakatos.Collections** is a C# library designed for developers who need advanced data structures focusing on immutability, persistence, and efficiency. This library simplifies working with immutable collections while offering version history, safe, consistent operations, and high-performance data structures.
+### Overview
+Lakatos.Collections is a C# library designed for developers who need advanced data structures focusing on immutability, persistence, and efficiency. It offers collections like PersistentList and EfficientList, providing historical data consistency and high-performance operations for scenarios where data integrity and performance are crucial.
 
-## Why Lakatos.Collections?
-Unlike the standard collections in .NET like `ImmutableList`, **Lakatos.Collections** provides advanced persistence through collections like `PersistentList`, and high-efficiency data management through `EfficientList`. These collections are highly beneficial for scenarios where data integrity, consistency, performance, and history tracking are crucial.
 
 ## Collections Available
 ### 1. PersistentList
@@ -18,26 +16,27 @@ An optimized list designed for high-performance operations, such as fast sorting
 - **Parallel Operations**: Supports parallel search (`ParallelBinarySearch`) for improved speed on multi-core systems.
 - **Dynamic Growth**: Efficiently manages memory and grows dynamically without significant overhead.
 
-## Features
-### Common Features:
-- **Immutability**: Collections from Lakatos.Collections do not allow in-place modifications, helping avoid side effects in your applications.
-- **Version History** (for `PersistentList`): Track changes and maintain historical versions of your data. Useful for undo features, historical data viewing, and concurrent system safety.
-- **Efficient Snapshots** (for `PersistentList`): Only the difference is stored, allowing multiple versions without memory blow-up.
+### Features
+- **Immutability**: Collections do not allow in-place modifications, ensuring no side effects in your applications.
+- **Version History (PersistentList)**: Track changes and maintain historical versions of your data, useful for undo features and debugging.
+- **Efficient Snapshots (PersistentList)**: Stores only differences to manage memory efficiently.
+- **Fast Operations (EfficientList)**: Optimized sorting and searching algorithms, with support for parallel execution, suitable for large-scale data processing.
+
 
 ### Specific to EfficientList:
 - **Fast Operations**: Sorting and searching optimized for performance with support for parallel execution.
 - **Scalability**: Handles millions of elements efficiently, suitable for large-scale and real-time data processing.
 
-## Practical Use-Cases
-### PersistentList
-- **Undo/Redo Operations**: Implement undo/redo functionality in applications effortlessly.
-- **Time-Travel Debugging**: Enable the inspection of how data structures change over time.
-- **State Management**: Particularly useful in multi-threaded or distributed systems where you want a consistent snapshot at any point in time.
+### Practical Use-Cases
+- **PersistentList**:
+  - Undo/Redo Operations: Ideal for applications that need to revert actions.
+  - Time-Travel Debugging: Allows inspection of historical states.
+  - Multithreaded Applications: Ensures thread-safety without synchronization issues.
+- **EfficientList**:
+  - DNS Filtering: Efficient for checking and responding to queries in real-time.
+  - Data Analysis: Optimized for sorting and searching over large datasets.
+  - Real-Time Systems: Suitable for scalable and high-performance environments.
 
-### EfficientList
-- **Real-Time Systems**: Efficient for large-scale data processing where performance is critical.
-- **DNS Filtering**: Can be used to implement high-speed DNS filtering and lookups.
-- **Data Analysis**: Suitable for scenarios requiring fast sorting and searching over large datasets.
 
 ## Getting Started
 ### Installation
@@ -128,17 +127,6 @@ Provides the capability to step back in time and see previous states of the coll
 ### Concurrent Operations
 Due to immutability (PersistentList) and efficient parallel operations (EfficientList), these collections are inherently thread-safe, making them useful for concurrent applications without synchronization issues.
 
-## Practical Scenarios for Use
-
-### PersistentList
-- **Undo/Redo Functionalities**: Useful for text editors, drawing apps, and anywhere where reverting operations are needed.
-- **Data Flow Systems**: In systems where data passes through many transformations, immutable collections help track and validate every stage.
-- **Multithreaded Applications**: When multiple threads need to access a collection without risk of corruption or race conditions.
-
-### EfficientList
-- **DNS Filtering**: Ideal for implementing DNS filters that check and respond to millions of queries efficiently.
-- **Data Analysis**: Perfect for applications where large datasets need to be sorted and searched in real-time.
-- **Scalable Real-Time Systems**: Handles large-scale data processing with high performance, suitable for use in services like log processing and monitoring systems.
 
 ## License
 This project is licensed under the MIT License. You are free to use, modify, and distribute the code with proper attribution. See the LICENSE file for more details.
