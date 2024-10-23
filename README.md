@@ -90,12 +90,15 @@ Console.WriteLine($"Element found at index: {index}");
 
 ## Comparison to Other Collections
 
-| Collection      | Average Insertion Time | Historical Tracking | Complexity                | Immutable |
-|-----------------|------------------------|---------------------|---------------------------|-----------|
-| PersistentList  | ~7 µs                  | Yes                 | Logarithmic               | Yes       |
-| EfficientList   | ~3 µs (insertion)      | No                  | Linear (for searching)    | No        |
-| FSharpList      | ~3 µs                  | No                  | Linear                    | Yes       |
-| ImmutableList   | ~10-30 µs              | No                  | Logarithmic               | Yes       |
+| Collection     | Average Insertion Time | Historical Tracking | Complexity for Search        | Immutable |
+|----------------|------------------------|---------------------|------------------------------|-----------|
+| PersistentList | ~7 µs                  | Yes                 | Logarithmic                  | Yes       |
+| EfficientList  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted),        | No        |
+|                |                        |                     | Linear (unsorted)            |           |
+| FSharpList     | ~3 µs                  | No                  | Linear                       | Yes       |
+| ImmutableList  | ~0.9 µs                | No                  | Logarithmic                  | Yes       |
+
+
 
 ## Pros & Cons
 
