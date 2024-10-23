@@ -100,6 +100,14 @@ Console.WriteLine($"Element found at index: {index}");
 
 **Note**: `EfficientList` and `ImmutableList` were tested with **10 million insertions**, sorting operations, and **100 parallel searches**, confirming their efficiency and speed when handling large datasets.
 
+### **EfficientList Comparison with List<string>**
+
+| Feature                      | `EfficientList`               | `List<string>` (Competitor)          |
+|------------------------------|-------------------------------|--------------------------------------|
+| **Time to Create List**      | 7810 ms                       | 1668 ms                              |
+| **Time to Sort List**        | 7213 ms (ParallelSort)        | 20083 ms                             |
+| **Parallel Search (100 Elements)** | 5.267 ms - All elements found  | 3.409 ms - **99 or 100 elements not found** |
+
 
 ## Pros & Cons
 
