@@ -95,7 +95,7 @@ Console.WriteLine($"Element found at index: {index}");
 | PersistentList  | ~7 µs                  | Yes                 | Logarithmic               |
 | EfficientList   | ~3 µs (insertion)      | No                  | Linear (for searching)    |
 | FSharpList      | ~3 µs                  | No                  | Linear                    |
-| ImmutableList   | ~127 µs                | No                  | Linear                    |
+| ImmutableList   | ~10-30 µs              | No                  | Logarithmic               |
 
 ## Pros & Cons
 
