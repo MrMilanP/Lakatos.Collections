@@ -90,7 +90,7 @@ Console.WriteLine($"Element found at index: {index}");
 
 ## Comparison to Other Collections
 
-| Collection     | Average Insertion Time | Historical Tracking | Complexity for Search        | Immutable | Avg Search Time for 100 Parallel Searches |
+| Collection     | Average Insertion Time | Historical Tracking | Complexity for Search        | Immutable | Time for 100 Parallel Searches           |
 |----------------|------------------------|---------------------|------------------------------|-----------|------------------------------------------|
 | PersistentList | ~7 µs                  | Yes                 | Logarithmic                  | Yes       | N/A                                      |
 | EfficientList  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted),        | No        | 5.267 ms                                 |
