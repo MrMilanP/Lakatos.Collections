@@ -60,8 +60,9 @@ persistentList = persistentList.Add(2);
 var previousList = persistentList.Previous; // Will be [1]
 ```
 
-### EfficientList
 ### Example Usage
+
+### EfficientList
 
 #### Using `string`
 
