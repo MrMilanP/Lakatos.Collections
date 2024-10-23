@@ -96,7 +96,7 @@ Console.WriteLine($"Element found at index: {index}");
 | **EfficientList**  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted)         | No        | 5.267 ms                                 | ✅ Passed All                                            |
 | FSharpList     | ~3 µs                  | No                  | Linear                       | Yes       | N/A                                      | ⚪ - The test was **not conducted** for this collection. |
 | ImmutableList  | ~0.9 µs                | No                  | Logarithmic (sorted)         | Yes       | 18.379 ms                                | ✅ Passed All                                            |
-| List<T>        | ~0.16 µs               | No                  | Logarithmic (sorted)         | No        | 3.352 ms                                 | ✖ Failed Multiple Tests                                  |
+| List<T>        | ~0.16 µs               | No                  | Logarithmic (sorted)         | No        | 3.352 ms                                 | ❌ Failed Multiple Tests                                  |
 
 **Note**: `EfficientList` and `ImmutableList` were tested with **10 million insertions**, sorting operations, and **100 parallel searches**, confirming their efficiency and speed when handling large datasets.
 
