@@ -90,13 +90,14 @@ Console.WriteLine($"Element found at index: {index}");
 
 ## Comparison to Other Collections
 
-| Collection     | Average Insertion Time | Historical Tracking | Complexity for Search        | Immutable |
-|----------------|------------------------|---------------------|------------------------------|-----------|
-| PersistentList | ~7 µs                  | Yes                 | Logarithmic                  | Yes       |
-| EfficientList  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted),        | No        |
-|                |                        |                     | Linear (unsorted)            |           |
-| FSharpList     | ~3 µs                  | No                  | Linear                       | Yes       |
-| ImmutableList  | ~0.9 µs                | No                  | Logarithmic                  | Yes       |
+| Collection     | Average Insertion Time | Historical Tracking | Complexity for Search        | Immutable | Avg Search Time for 100 Parallel Searches |
+|----------------|------------------------|---------------------|------------------------------|-----------|------------------------------------------|
+| PersistentList | ~7 µs                  | Yes                 | Logarithmic                  | Yes       | N/A                                      |
+| EfficientList  | ~0.78 µs (insertion)   | No                  | Logarithmic (sorted),        | No        | 5.267 ms                                 |
+|                |                        |                     | Linear (unsorted)            |           |                                          |
+| FSharpList     | ~3 µs                  | No                  | Linear                       | Yes       | N/A                                      |
+| ImmutableList  | ~0.9 µs                | No                  | Logarithmic                  | Yes       | 18.379 ms                                |
+
 
 **Note**: `EfficientList` and `ImmutableList` were tested with **10 million insertions**, sorting operations, and **100 parallel searches**, confirming their efficiency and speed when handling large datasets.
 
