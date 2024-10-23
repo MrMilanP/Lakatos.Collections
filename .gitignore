@@ -363,3 +363,10 @@ MigrationBackup/
 FodyWeavers.xsd
 /ForNuGet/LC (1).png
 /ForNuGet/LC.fw.png
+/ForNuGet/Persistent/PersistentList.cs
+/ForNuGet/Lakatos.Collections.csproj
+/ForNuGet/Lakatos.Collections.sln
+/ForNuGet/LICENSE.md
+/ForNuGet/README.md
+/Lakatos.Collections/LICENSE.md
+/Lakatos.Collections/README.md
