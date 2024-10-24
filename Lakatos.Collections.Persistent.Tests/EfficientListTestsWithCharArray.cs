@@ -1,4 +1,5 @@
 ﻿using Lakatos.Collections.Efficient;
+using Lakatos.Collections.Filters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -189,10 +190,13 @@ namespace Lakatos.Collections.Persistent.Tests
             Assert.True(foundAll, "All known IP addresses should be found in the list.");
         }
 
+
+        // Generate a random IP address
         private char[] GenerateRandomIp()
         {
             var random = new Random();
             return $"{random.Next(0, 256)}.{random.Next(0, 256)}.{random.Next(0, 256)}.{random.Next(0, 256)}".ToCharArray();
         }
+
     }
 }
