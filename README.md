@@ -1,5 +1,8 @@
 # Lakatos.Collections
 
+![Lakatos.Collections Icon](https://github.com/MrMilanP/Lakatos.Collections/blob/master/Lakatos.Collections/LC.png?raw=true)
+
+
 ### Overview
 Lakatos.Collections is a C# library designed for developers who need advanced data structures focusing on immutability, persistence, and efficiency. It offers collections like PersistentList and EfficientList, providing historical data consistency and high-performance operations for scenarios where data integrity and performance are crucial.
 
