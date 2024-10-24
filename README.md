@@ -1,10 +1,8 @@
 # Lakatos.Collections
 
-## Overview
-**Lakatos.Collections** is a C# library designed for developers who need advanced data structures focusing on immutability, persistence, and efficiency. This library simplifies working with immutable collections while offering version history, safe, consistent operations, and high-performance data structures.
+### Overview
+Lakatos.Collections is a C# library designed for developers who need advanced data structures focusing on immutability, persistence, and efficiency. It offers collections like PersistentList and EfficientList, providing historical data consistency and high-performance operations for scenarios where data integrity and performance are crucial.
 
-## Why Lakatos.Collections?
-Unlike the standard collections in .NET like `ImmutableList`, **Lakatos.Collections** provides advanced persistence through collections like `PersistentList`, and high-efficiency data management through `EfficientList`. These collections are highly beneficial for scenarios where data integrity, consistency, performance, and history tracking are crucial.
 
 ## Collections Available
 ### 1. PersistentList
@@ -13,31 +11,29 @@ A linked list where each modification (like adding a new element) results in a n
 ### 2. EfficientList
 An optimized list designed for high-performance operations, such as fast sorting and searching. Suitable for scenarios where efficiency and speed are critical, even with large datasets. 
 
-#### Features:
-- **High Performance**: Provides fast sorting algorithms like `QuickSort`, `MergeSort`, and `ParallelSort`.
-- **Parallel Operations**: Supports parallel search (`ParallelBinarySearch`) for improved speed on multi-core systems.
-- **Dynamic Growth**: Efficiently manages memory and grows dynamically without significant overhead.
+### 3. BloomFilter
+A probabilistic data structure that offers fast membership checks for large sets, with a configurable false positive rate. It efficiently determines if an element might be in a set, reducing the need for more expensive searches when used in conjunction with `EfficientList`.
 
-## Features
-### Common Features:
-- **Immutability**: Collections from Lakatos.Collections do not allow in-place modifications, helping avoid side effects in your applications.
-- **Version History** (for `PersistentList`): Track changes and maintain historical versions of your data. Useful for undo features, historical data viewing, and concurrent system safety.
-- **Efficient Snapshots** (for `PersistentList`): Only the difference is stored, allowing multiple versions without memory blow-up.
 
-### Specific to EfficientList:
-- **Fast Operations**: Sorting and searching optimized for performance with support for parallel execution.
-- **Scalability**: Handles millions of elements efficiently, suitable for large-scale and real-time data processing.
+### Features
+- **Immutability**: Ensures no in-place modifications, avoiding side effects.
+- **Version History (PersistentList)**: Track changes and maintain historical versions, useful for undo features and debugging.
+- **Efficient Snapshots (PersistentList)**: Stores only differences, optimizing memory usage.
+- **High Performance (EfficientList)**: Provides fast sorting algorithms like `QuickSort`, `MergeSort`, and `ParallelSort` with support for parallel execution.
+- **Scalability (EfficientList)**: Efficiently handles millions of elements, suitable for large-scale and real-time data processing.
+- **Probabilistic Filtering (BloomFilter)**: Fast lookup operations to check if elements are likely in a set, reducing unnecessary computations.
 
-## Practical Use-Cases
-### PersistentList
-- **Undo/Redo Operations**: Implement undo/redo functionality in applications effortlessly.
-- **Time-Travel Debugging**: Enable the inspection of how data structures change over time.
-- **State Management**: Particularly useful in multi-threaded or distributed systems where you want a consistent snapshot at any point in time.
 
-### EfficientList
-- **Real-Time Systems**: Efficient for large-scale data processing where performance is critical.
-- **DNS Filtering**: Can be used to implement high-speed DNS filtering and lookups.
-- **Data Analysis**: Suitable for scenarios requiring fast sorting and searching over large datasets.
+### Practical Use-Cases
+- **PersistentList**:
+  - Undo/Redo Operations, time-travel debugging, and multithreaded applications.
+- **EfficientList**:
+  - DNS filtering, data analysis, and real-time systems.
+- **BloomFilter**:
+  - Optimizing search operations, reducing unnecessary database lookups, and enhancing performance in large-scale applications.
+
+
+
 
 ## Getting Started
 ### Installation
@@ -46,7 +42,7 @@ Install via NuGet Package Manager:
 ```bash
 Install-Package Lakatos.Collections
 ```
-
+### Example Usage
 
 ### PersistentList
 ```csharp
@@ -61,7 +57,6 @@ var previousList = persistentList.Previous; // Will be [1]
 ```
 
 ### EfficientList
-### Example Usage
 
 #### Using `string`
 
@@ -100,46 +95,68 @@ var searchElement = new CharArrayWrapper(new char[] { '1', '0', '.', '0', '.', '
 int index = efficientList.BinarySearch(searchElement);
 Console.WriteLine($"Element found at index: {index}");
 ```
+### BloomFilter Example
+
+```csharp
+using Lakatos.Collections.Filters;
+
+var bloomFilter = new BloomFilter(1_000_000); // Initialize with 1,000,000 bits
+
+bloomFilter.Add("example.com");
+bloomFilter.Add("google.com");
+
+Console.WriteLine(bloomFilter.Contains("example.com")); // True
+Console.WriteLine(bloomFilter.Contains("yahoo.com"));   // False
+```
 
 ## Comparison to Other Collections
 
-| Collection      | Average Insertion Time | Historical Tracking | Complexity                |
-|-----------------|------------------------|---------------------|---------------------------|
-| PersistentList  | ~7 µs                  | Yes                 | Logarithmic               |
-| EfficientList   | ~3 µs (insertion)      | No                  | Linear (for searching)    |
-| FSharpList      | ~3 µs                  | No                  | Linear                    |
-| ImmutableList   | ~127 µs                | No                  | Linear                    |
+| Collection       | Average Insertion Time | Historical Tracking | Complexity for Search | Immutable | Time for 100 Parallel Searches | Test Status                                         |
+|------------------|------------------------|---------------------|-----------------------|-----------|--------------------------------|-----------------------------------------------------|
+| **PersistentList**   | ~7 µs                  | Yes                 | Logarithmic           | Yes       | N/A                            | ⚪ - The test was not conducted for this collection. |
+| **EfficientList**    | ~0.0122 µs (insertion) | No                  | Logarithmic (sorted)  | No        | 5.267 ms                       | ✅ Passed All                                        |
+| **BloomFilter**      | ~0.57 µs               | No                  | Constant Time (O(1))  | No        | 4.742 ms (combined with EfficientList) | ✅ Passed All                                        |
+| FSharpList       | ~3 µs                  | No                  | Linear                | Yes       | N/A                            | ⚪ - The test was not conducted for this collection. |
+| ImmutableList    | ~0.9 µs                | No                  | Logarithmic (sorted)  | Yes       | 18.379 ms                      | ✅ Passed All                                        |
+| List<T>          | ~0.16 µs               | No                  | Logarithmic (sorted)  | No        | 3.352 ms                       | ❌ Failed Multiple Tests                             |
+
+
+**Note**: `EfficientList` and `ImmutableList` were tested with **10 million insertions**, sorting operations, and **100 parallel searches**, confirming their efficiency and speed when handling large datasets.
+
+  EfficientList and BloomFilter were tested with 10 million insertions, sorting operations, and 100 parallel searches, confirming their efficiency and speed when handling large datasets.
+
+### **EfficientList Comparison with List<string>**
+
+| Feature                      | `EfficientList`               | `List<string>` (Competitor)          |
+|------------------------------|-------------------------------|--------------------------------------|
+| **Time to Create List**      | 7810 ms                       | 1668 ms                              |
+| **Time to Sort List**        | 7213 ms (ParallelSort)        | 20083 ms                             |
+| **Parallel Search (100 Elements)** | 5.267 ms - All elements found  | 3.409 ms - **99 or 100 elements not found** |
+
+### BloomFilter Performance
+
+| Feature               | BloomFilter                             |
+|-----------------------|-----------------------------------------|
+| **Time to Add Elements** | 5728 ms for 10 million elements        |
+| **False Positive Rate**  | Configurable (tested with 0.01)       |
+| **Combination Search Time** | 4.742 ms when combined with EfficientList |
+
 
 ## Pros & Cons
 
 ### Pros
-- **Immutability and Safety**: No accidental modifications of data, making the code easier to debug and maintain.
-- **Persistence (PersistentList)**: Track the evolution of data over time, enabling undo/redo functionality and version control-like behavior.
+- **Immutability and Safety**: Prevents accidental modifications, simplifying debugging and maintenance.
+- **Persistence (PersistentList)**: Enables undo/redo functionality and version control-like behavior.
 - **High Performance (EfficientList)**: Optimized for fast operations, suitable for real-time and large-scale systems.
+- **Probabilistic Filtering (BloomFilter)**: Provides fast lookup and filtering capabilities, enhancing performance when used with large datasets.
+- **Concurrent Operations**: Thread-safe design due to immutability and efficient parallel processing.
 
 ### Cons
-- **Memory Usage**: Persistent collections can consume more memory as each change creates a new version of the data.
-- **Speed**: Persistent collections may be slower than non-persistent collections due to version handling, while `EfficientList` provides better performance for non-persistent operations.
+- **Memory Usage**: Persistent collections consume more memory as each change creates a new version.
+- **False Positives (BloomFilter)**: BloomFilter has a small probability of false positives, depending on its configuration.
 
-## Advanced Features
 
-### Time Travel Debugging (PersistentList)
-Provides the capability to step back in time and see previous states of the collection, useful for debugging complex application states.
 
-### Concurrent Operations
-Due to immutability (PersistentList) and efficient parallel operations (EfficientList), these collections are inherently thread-safe, making them useful for concurrent applications without synchronization issues.
-
-## Practical Scenarios for Use
-
-### PersistentList
-- **Undo/Redo Functionalities**: Useful for text editors, drawing apps, and anywhere where reverting operations are needed.
-- **Data Flow Systems**: In systems where data passes through many transformations, immutable collections help track and validate every stage.
-- **Multithreaded Applications**: When multiple threads need to access a collection without risk of corruption or race conditions.
-
-### EfficientList
-- **DNS Filtering**: Ideal for implementing DNS filters that check and respond to millions of queries efficiently.
-- **Data Analysis**: Perfect for applications where large datasets need to be sorted and searched in real-time.
-- **Scalable Real-Time Systems**: Handles large-scale data processing with high performance, suitable for use in services like log processing and monitoring systems.
 
 ## License
 This project is licensed under the MIT License. You are free to use, modify, and distribute the code with proper attribution. See the LICENSE file for more details.
